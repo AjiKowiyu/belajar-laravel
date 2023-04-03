@@ -3,6 +3,7 @@
 use App\Http\Controllers\C_berita;
 use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_produk;
+use App\Http\Controllers\C_kategori;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +53,9 @@ Route::get('/produk', [C_produk::class, 'index'])->name('produk-index');
 Route::get('/produk/store', [C_produk::class, 'store'])->name('produk-simpan');
 Route::get('/produk/update/{id}', [C_produk::class, 'update'])->where('id', '[0-9]+')->name('produk-perbarui');
 Route::get('/produk/delete/{id}', [C_produk::class, 'destroy'])->where('id', '[0-9]+')->name('produk-hapus');
+
+//belajar eloquent
+Route::get('/kategori', [C_kategori::class, 'index'])->name('kategori-index');
+Route::get('/kategori/store', [C_kategori::class, 'store'])->name('kategori-simpan');
+Route::get('/kategori/update/{id}', [C_kategori::class, 'update'])->where('id', '[0-9]+')->name('kategori-perbarui');
+Route::get('/kategori/delete/{id}', [C_kategori::class, 'destroy'])->where('id', '[0-9]+')->name('kategori-hapus');
