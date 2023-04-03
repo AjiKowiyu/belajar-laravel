@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\C_berita;
+use App\Http\Controllers\C_barang;
+use App\Http\Controllers\C_produk;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,14 +37,18 @@ Route::get('/motor/{merk}/{jenis}/{warna}', function($merk, $jenis, $warna){
 })->where('merk', '[A-Za-z]+')->name('motor_baru');
 
 
-//route dengan penamaan (naming route)
-Route::get('/produk', function(){
-    return view('list-semua-produk');
-});
-Route::get('/produk/promo', function(){
-    echo 'list semua produk yang sedang diskon';
-})->name('produk_dengan_potongan_harga');
-
-
 //route dengan controller
 Route::get('/berita', [C_berita::class, 'index'])->name('berita-laravel');
+
+//route dengan controller & view
+Route::get('/barang', [C_barang::class, 'index'])->name('barang');
+
+//layouting dengan blade
+Route::get('/barang-pesanan', [C_barang::class, 'pesanan'])->name('barang-pesanan');
+Route::get('/barang-promo', [C_barang::class, 'promo'])->name('barang-promo');
+
+//belajar query builder
+Route::get('/produk', [C_produk::class, 'index'])->name('produk-index');
+Route::get('/produk/store', [C_produk::class, 'store'])->name('produk-simpan');
+Route::get('/produk/update/{id}', [C_produk::class, 'update'])->where('id', '[0-9]+')->name('produk-perbarui');
+Route::get('/produk/delete/{id}', [C_produk::class, 'destroy'])->where('id', '[0-9]+')->name('produk-hapus');
