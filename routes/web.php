@@ -59,3 +59,7 @@ Route::get('/kategori', [C_kategori::class, 'index'])->name('kategori-index');
 Route::get('/kategori/store', [C_kategori::class, 'store'])->name('kategori-simpan');
 Route::get('/kategori/update/{id}', [C_kategori::class, 'update'])->where('id', '[0-9]+')->name('kategori-perbarui');
 Route::get('/kategori/delete/{id}', [C_kategori::class, 'destroy'])->where('id', '[0-9]+')->name('kategori-hapus');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
