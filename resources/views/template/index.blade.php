@@ -8,6 +8,7 @@
         <title>Dashboard Template · Bootstrap v5.2</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/dashboard.js') }}"></script>
     </head>
 
@@ -32,13 +33,13 @@
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('home') }}">
+                                <a class="nav-link {{ (Request::segment(1) == 'home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">
                                     <span data-feather="home" class="align-text-bottom"></span>
                                     Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('berita') }}">
+                                <a class="nav-link {{ (Request::segment(1) == 'berita') ? 'active' : '' }}" href="{{ route('berita') }}">
                                     <span data-feather="file" class="align-text-bottom"></span>
                                     Berita
                                 </a>
