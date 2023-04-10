@@ -4,6 +4,7 @@ use App\Http\Controllers\C_berita;
 use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_produk;
 use App\Http\Controllers\C_kategori;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,9 +39,6 @@ Route::get('/motor/{merk}/{jenis}/{warna}', function($merk, $jenis, $warna){
 })->where('merk', '[A-Za-z]+')->name('motor_baru');
 
 
-//route dengan controller
-Route::get('/berita', [C_berita::class, 'index'])->name('berita-laravel');
-
 //route dengan controller & view
 Route::get('/barang', [C_barang::class, 'index'])->name('barang');
 
@@ -62,4 +60,5 @@ Route::get('/kategori/delete/{id}', [C_kategori::class, 'destroy'])->where('id',
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/berita', [C_berita::class, 'index'])->name('berita');

@@ -8,6 +8,6 @@ class C_berita extends Controller
 {
     public function index()
     {
-        echo 'rute berita dari function index controller C_berita';
+        return view('berita/index');
     }
 }
