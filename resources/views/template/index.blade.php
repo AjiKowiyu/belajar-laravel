@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="Aji Kowiyu">
-        <title>Dashboard Template · Bootstrap v5.2</title>
+        <title>Berita Terbaru</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
         <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
@@ -17,7 +17,7 @@
     <body>
         
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">PT Kabar Cakrawala</a>
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">PT Warta Nusantara</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
