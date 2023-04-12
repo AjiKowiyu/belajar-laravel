@@ -62,3 +62,4 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [C_berita::class, 'index'])->name('berita');
+Route::get('/berita/tambah', [C_berita::class, 'create'])->name('berita-tambah');
