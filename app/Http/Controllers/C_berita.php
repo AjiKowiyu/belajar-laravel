@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Berita_kategori;
+use App\Models\Berita;
+
 
 class C_berita extends Controller
 {
@@ -22,13 +25,28 @@ class C_berita extends Controller
 
     public function create()
     {
-        return view('berita/tambah');
+        $kategori = Berita_kategori::all();
+        return view('berita/tambah', compact('kategori'));
     }
 
 
     public function store(Request $request)
     {
-        //
+        $berita = Berita::create([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'kategori_id' => $request->kategori,
+            'foto' => 'default-news.jpg',
+            'status' => $request->status,
+            'user_id' => Auth::user()->id,
+            'tanggal_create' => date('Y-m-d H:i:s'),
+        ]);
+        if ( ! $berita ) {
+            // App::abort(500, 'Some Error');
+            echo 'error bos';
+        } else {
+            return redirect()->route('berita');
+        }
     }
 
 

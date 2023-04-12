@@ -1,7 +1,8 @@
 @extends('template/index')
 @section('konten')
 
-<form action="#" method="post" class="mt-4">
+<form action="{{ route('berita-simpan') }}" method="post" class="mt-4">
+    @csrf
     <div class="mb-3">
         <label for="judul" class="form-label">Judul</label>
         <input type="text" class="form-control" id="judul" name="judul">
@@ -14,9 +15,9 @@
         <label for="kategori" class="form-label">Kategori</label>
         <select class="form-select" id="kategori" name="kategori">
             <option selected>Pilih kategori berita</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            @foreach ($kategori as $k)
+                <option value="{{ $k->id }}">{{ $k->nama_kategori }}</option>
+            @endforeach
         </select>
     </div>
     <div class="mb-3">
