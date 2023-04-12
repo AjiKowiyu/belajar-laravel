@@ -18,8 +18,9 @@ class CreateBeritaTable extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->integer('kategori_id');
-            $table->string('user_id');
+            $table->string('foto');
             $table->string('status', 7);
+            $table->string('user_id');
             $table->dateTime('tanggal_create');
             $table->dateTime('tanggal_update');
         });
