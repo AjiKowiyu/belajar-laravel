@@ -58,7 +58,7 @@ class C_berita extends Controller
                 // App::abort(500, 'Some Error');
                 echo 'error bos';
             } else {
-                return redirect()->route('berita');
+                return redirect()->route('berita')->with('success', 'Berhasil membuat berita baru!');
             }
         }
     }
