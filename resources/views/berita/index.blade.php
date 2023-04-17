@@ -27,7 +27,7 @@
                 <td>{{ (strlen($b->isi) > 25) ? substr($b->isi, 0, 25).'...' : $b->isi }}</td>
                 <td>{{ $b->status }}</td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-outline-info"><i class="fa-fw fa-solid fa-eye"></i></a>
+                    <a href="{{ route('berita-detail', ['id' => $b->id]) }}" class="btn btn-sm btn-outline-info"><i class="fa-fw fa-solid fa-eye"></i></a>
                     <a href="#" class="btn btn-sm btn-outline-warning"><i class="fa-fw fa-solid fa-pen-to-square"></i></a>
                     <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa-fw fa-solid fa-trash"></i></a>
                 </td>

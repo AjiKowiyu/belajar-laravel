@@ -78,7 +78,8 @@ class C_berita extends Controller
 
     public function show($id)
     {
-        //
+        $berita = Berita::find($id);
+        return view('berita/detail', compact('berita'));
     }
 
 

@@ -64,3 +64,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [C_berita::class, 'index'])->name('berita');
 Route::get('/berita/tambah', [C_berita::class, 'create'])->name('berita-tambah');
 Route::post('/berita/simpan', [C_berita::class, 'store'])->name('berita-simpan');
+Route::get('/berita/detail/{id}', [C_berita::class, 'show'])->name('berita-detail')->where('id', '[0-9]+');
