@@ -18,7 +18,8 @@ class C_berita extends Controller
 
     public function index()
     {
-        return view('berita/index');
+        $berita = Berita::all();
+        return view('berita/index', compact('berita'));
     }
 
 

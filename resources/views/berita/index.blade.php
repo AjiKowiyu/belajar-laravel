@@ -10,29 +10,29 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>First</th>
-            <th>Last</th>
-            <th>Handle</th>
+            <th>Judul</th>
+            <th>Konten</th>
+            <th>Status</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        @php
+            $i = 1;
+        @endphp
+        @foreach ($berita as $b)
+            <tr>
+                <td>{{ $i++ }}</td>
+                <td>{{ $b->judul }}</td>
+                <td>{{ $b->isi }}</td>
+                <td>{{ $b->status }}</td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-outline-info"><i class="fa-fw fa-solid fa-eye"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-warning"><i class="fa-fw fa-solid fa-pen-to-square"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa-fw fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
 
