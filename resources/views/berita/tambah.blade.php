@@ -22,7 +22,7 @@
         <select class="form-select" id="kategori" name="kategori">
             <option selected value="">Pilih kategori berita</option>
             @foreach ($kategori as $k)
-                <option value="{{ $k->id }}">{{ $k->nama_kategori }}</option>
+                <option {{ (old('kategori') == $k->id) ? 'selected' : '' }} value="{{ $k->id }}">{{ $k->nama_kategori }}</option>
             @endforeach
         </select>
         @if ($errors->has('kategori'))
