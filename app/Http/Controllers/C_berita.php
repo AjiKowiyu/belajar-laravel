@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Berita_kategori;
 use App\Models\Berita;
 
@@ -33,20 +34,32 @@ class C_berita extends Controller
 
     public function store(Request $request)
     {
-        $berita = Berita::create([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'kategori_id' => $request->kategori,
-            'foto' => 'default-news.jpg',
-            'status' => $request->status,
-            'user_id' => Auth::user()->id,
-            'tanggal_create' => date('Y-m-d H:i:s'),
-        ]);
-        if ( ! $berita ) {
-            // App::abort(500, 'Some Error');
-            echo 'error bos';
+        $aturan = [
+            'judul' => 'required|min:15',
+            'isi' => 'required|min:100',
+            'kategori' => 'required',
+            'status' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $aturan);
+        //jika validasi gagal
+        if ($validator->fails()) {
+            return redirect()->route('berita-tambah')->withErrors($validator)->withInput();
         } else {
-            return redirect()->route('berita');
+            $berita = Berita::create([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'kategori_id' => $request->kategori,
+                'foto' => 'default-news.jpg',
+                'status' => $request->status,
+                'user_id' => Auth::user()->id,
+                'tanggal_create' => date('Y-m-d H:i:s'),
+            ]);
+            if ( ! $berita ) {
+                // App::abort(500, 'Some Error');
+                echo 'error bos';
+            } else {
+                return redirect()->route('berita');
+            }
         }
     }
 
