@@ -41,25 +41,37 @@ class C_berita extends Controller
             'status' => 'required',
         ];
         $validator = Validator::make($request->all(), $aturan);
-        //jika validasi gagal
-        if ($validator->fails()) {
-            return redirect()->route('berita-tambah')->withErrors($validator)->withInput();
-        } else {
-            $berita = Berita::create([
-                'judul' => $request->judul,
-                'isi' => $request->isi,
-                'kategori_id' => $request->kategori,
-                'foto' => 'default-news.jpg',
-                'status' => $request->status,
-                'user_id' => Auth::user()->id,
-                'tanggal_create' => date('Y-m-d H:i:s'),
-            ]);
-            if ( ! $berita ) {
-                // App::abort(500, 'Some Error');
-                echo 'error bos';
-            } else {
-                return redirect()->route('berita')->with('success', 'Berhasil membuat berita baru!');
+
+        //percobaan untuk melakukan sesuatu (menyimpan data berita ke dalam database mysql)
+        try {
+            //jika validasi gagal
+            if ($validator->fails()) {
+                return redirect()->route('berita-tambah')->withErrors($validator)->withInput();
             }
+            //jika validasi lolos
+            else {
+                $berita = Berita::create([
+                    'judul' => $request->judul,
+                    'isi' => $request->isi,
+                    'kategori_id' => $request->kategori,
+                    'foto' => 'default-news.jpg',
+                    'status' => $request->status,
+                    'user_id' => Auth::user()->id,
+                    'tanggal_create' => date('Y-m-d H:i:s'),
+                ]);
+                //jika gagal input ke mysql
+                if ( ! $berita ) {
+                    return redirect()->route('berita-tambah')->with('warning', 'Database Error');
+                }
+                //jika berhasil input ke mysql
+                else {
+                    return redirect()->route('berita')->with('success', 'Berhasil membuat berita baru!');
+                }
+            }
+        }
+        //percobaan yg gagal
+        catch (\Throwable $th) {
+            return redirect()->route('berita-tambah')->withErrors($th->getMessage())->withInput();
         }
     }
 
