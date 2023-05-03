@@ -19,7 +19,7 @@ class C_berita extends Controller
 
     public function index()
     {
-        $berita = Berita::all();
+        $berita = Berita::where('status', '!=', 'Trash')->get();
         return view('berita/index', compact('berita'));
     }
 
@@ -97,6 +97,17 @@ class C_berita extends Controller
 
     public function destroy($id)
     {
-        //
+        $berita = Berita::where('id', $id)->update([
+            'status' => 'Trash',
+            'tanggal_update' => date('Y-m-d H:i:s'),
+        ]);
+        //jika gagal update ke mysql
+        if ( ! $berita ) {
+            return redirect()->route('berita')->with('warning', 'Database Error');
+        }
+        //jika berhasil update ke mysql
+        else {
+            return redirect()->route('berita')->with('success', 'Berhasil membuang berita!');
+        }
     }
 }
