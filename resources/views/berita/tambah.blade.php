@@ -13,6 +13,10 @@
     <div class="mb-3">
         <label for="foto" class="form-label">Foto</label>
         <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, jpeg, .png">
+        <div class="small mt-1"><i class="fa-fw fa-solid fa-info-circle text-info"></i> Maks. ukuran: 3MB, File yang diizinkan: .jpg, .jpeg, .png</div>
+        @if ($errors->has('foto'))
+            <div class="badge text-bg-danger">{{ $errors->first('foto') }}</div>
+        @endif
     </div>
     <div class="mb-3">
         <label for="isi" class="form-label">Isi Berita</label>

@@ -37,6 +37,7 @@ class C_berita extends Controller
         $aturan = [
             'judul' => 'required|min:15',
             'isi' => 'required|min:100',
+            'foto' => 'max:3072|mimes:images/jpeg,image/png',
             'kategori' => 'required',
             'status' => 'required',
         ];
