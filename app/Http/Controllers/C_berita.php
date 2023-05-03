@@ -54,7 +54,7 @@ class C_berita extends Controller
                     'judul' => $request->judul,
                     'isi' => $request->isi,
                     'kategori_id' => $request->kategori,
-                    'foto' => 'default-news.jpg',
+                    'foto' => ($request->file('foto')) ? $request->file('foto')->store('foto') : 'default-news.jpg',
                     'status' => $request->status,
                     'user_id' => Auth::user()->id,
                     'tanggal_create' => date('Y-m-d H:i:s'),

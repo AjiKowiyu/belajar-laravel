@@ -1,7 +1,7 @@
 @extends('template/index')
 @section('konten')
 
-<form action="{{ route('berita-simpan') }}" method="post" class="mt-4">
+<form action="{{ route('berita-simpan') }}" method="post" class="mt-4" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="judul" class="form-label">Judul</label>
@@ -9,6 +9,10 @@
         @if ($errors->has('judul'))
             <div class="badge text-bg-danger">{{ $errors->first('judul') }}</div>
         @endif
+    </div>
+    <div class="mb-3">
+        <label for="foto" class="form-label">Foto</label>
+        <input type="file" class="form-control" id="foto" name="foto" accept=".jpg, jpeg, .png">
     </div>
     <div class="mb-3">
         <label for="isi" class="form-label">Isi Berita</label>

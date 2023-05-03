@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <img src="{{ asset("images/berita/$berita->foto") }}" class="img-fluid rounded-start p-3" alt="{{ $berita->judul }}">
+            <img src="{{ ($berita->foto != 'default-news.jpg') ? asset("storage/$berita->foto") : asset("images/berita/$berita->foto") }}" class="img-fluid rounded-start p-3" alt="{{ $berita->judul }}">
         </div>
         <div class="col-md-8">
             <div class="card-body pb-0 mb-0">
