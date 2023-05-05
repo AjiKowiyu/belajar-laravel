@@ -37,7 +37,7 @@ class C_berita extends Controller
         $aturan = [
             'judul' => 'required|min:15',
             'isi' => 'required|min:100',
-            'foto' => 'max:3072|mimes:images/jpeg,image/png',
+            'foto' => 'max:3072|mimes:image/jpeg,image/png',
             'kategori' => 'required',
             'status' => 'required',
         ];
@@ -86,13 +86,53 @@ class C_berita extends Controller
 
     public function edit($id)
     {
-        //
+        $kategori = Berita_kategori::all();
+        $berita = Berita::find($id);
+        return view('berita/edit', compact('kategori', 'berita'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $aturan = [
+            'judul' => 'required|min:15',
+            'isi' => 'required|min:100',
+            'foto' => 'max:3072|mimes:jpeg,png',
+            'kategori' => 'required',
+            'status' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $aturan);
+
+        //percobaan untuk melakukan sesuatu (menyimpan data berita ke dalam database mysql)
+        try {
+            //jika validasi gagal
+            if ($validator->fails()) {
+                return redirect()->route('berita-edit', ['id' => $id])->withErrors($validator)->withInput();
+            }
+            //jika validasi lolos
+            else {
+                $berita = Berita::where('id', $id)->update([
+                    'judul' => $request->judul,
+                    'isi' => $request->isi,
+                    'kategori_id' => $request->kategori,
+                    'foto' => ($request->file('foto')) ? $request->file('foto')->store('foto') : 'default-news.jpg',
+                    'status' => $request->status,
+                    'tanggal_update' => date('Y-m-d H:i:s'),
+                ]);
+                //jika gagal input ke mysql
+                if ( ! $berita ) {
+                    return redirect()->route('berita-edit', ['id' => $id])->with('warning', 'Database Error');
+                }
+                //jika berhasil input ke mysql
+                else {
+                    return redirect()->route('berita')->with('success', "Berhasil perbarui berita $request->judul!");
+                }
+            }
+        }
+        //percobaan yg gagal
+        catch (\Throwable $th) {
+            return redirect()->route('berita-edit', ['id' => $id])->withErrors($th->getMessage())->withInput();
+        }
     }
 
 

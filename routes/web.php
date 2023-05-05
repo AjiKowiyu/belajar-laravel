@@ -65,4 +65,6 @@ Route::get('/berita', [C_berita::class, 'index'])->name('berita');
 Route::get('/berita/tambah', [C_berita::class, 'create'])->name('berita-tambah');
 Route::post('/berita/simpan', [C_berita::class, 'store'])->name('berita-simpan');
 Route::get('/berita/detail/{id}', [C_berita::class, 'show'])->name('berita-detail')->where('id', '[0-9]+');
+Route::get('/berita/edit/{id}', [C_berita::class, 'edit'])->name('berita-edit')->where('id', '[0-9]+');
+Route::post('/berita/update/{id}', [C_berita::class, 'update'])->name('berita-update')->where('id', '[0-9]+');
 Route::post('/berita/hapus/{id}', [C_berita::class, 'destroy'])->name('berita-hapus')->where('id', '[0-9]+');
