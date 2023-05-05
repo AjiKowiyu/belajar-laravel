@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Berita_kategori;
@@ -94,6 +95,7 @@ class C_berita extends Controller
 
     public function update(Request $request, $id)
     {
+
         $aturan = [
             'judul' => 'required|min:15',
             'isi' => 'required|min:100',
@@ -111,11 +113,18 @@ class C_berita extends Controller
             }
             //jika validasi lolos
             else {
+                $berita = Berita::find($id);
+                $foto_existing = $berita->foto;
+                //jika ada foto yang ingin diganti
+                if ( $request->file('foto') ) {
+                    Storage::delete($foto_existing);
+                    //hapus foto yang lama
+                }
                 $berita = Berita::where('id', $id)->update([
                     'judul' => $request->judul,
                     'isi' => $request->isi,
                     'kategori_id' => $request->kategori,
-                    'foto' => ($request->file('foto')) ? $request->file('foto')->store('foto') : 'default-news.jpg',
+                    'foto' => ($request->file('foto')) ? $request->file('foto')->store('foto') : $foto_existing,
                     'status' => $request->status,
                     'tanggal_update' => date('Y-m-d H:i:s'),
                 ]);
