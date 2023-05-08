@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //get: mengambil url yg di request
 //menampilkan halaman yg diminta
 Route::get('/', function () {
-    return view('welcome');
+    return view('beranda');
 });
 
 Route::get('/about', function(){
