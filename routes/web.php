@@ -4,6 +4,7 @@ use App\Http\Controllers\C_berita;
 use App\Http\Controllers\C_barang;
 use App\Http\Controllers\C_produk;
 use App\Http\Controllers\C_kategori;
+use App\Http\Controllers\C_beranda;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,12 @@ use Illuminate\Support\Facades\Route;
 
 //get: mengambil url yg di request
 //menampilkan halaman yg diminta
-Route::get('/', function () {
-    return view('beranda');
-});
+Route::get('/', [C_beranda::class, 'index'])->name('beranda');
+Route::get('/{id_kategori}/kabar-{nama_kategori}', [C_beranda::class, 'kabar_by_kategori'])
+    ->where([
+        'id_kategori'=>'[0-9]+',
+        'nama_kategori'=>'[a-z]+',
+    ])->name('kabar-kategori');
 
 Route::get('/about', function(){
     return view('test/halaman-about');
