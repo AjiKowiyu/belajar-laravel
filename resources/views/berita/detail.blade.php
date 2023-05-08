@@ -12,12 +12,10 @@
                 <h4 class="card-title mb-0"><b>{{ $berita->judul }}</b></h4>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12">
             <img src="{{ ($berita->foto != 'default-news.jpg') ? asset("storage/$berita->foto") : asset("images/berita/$berita->foto") }}" class="img-fluid rounded-start p-3" alt="{{ $berita->judul }}">
-        </div>
-        <div class="col-md-8">
             <div class="card-body pb-0 mb-0">
-                <p class="card-text">{{ $berita->isi }}</p>
+                <p class="card-text">{!! $berita->isi !!}</p>
             </div>
         </div>
         <div class="col-12">

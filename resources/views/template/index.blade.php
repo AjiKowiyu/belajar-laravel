@@ -9,9 +9,16 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
         <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/trix.css') }}" rel="stylesheet" >
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/dashboard.js') }}"></script>
         <script src="{{ asset('fontawesome/js/all.min.js') }}"></script>
+        <script src="{{ asset('js/trix.js') }}"></script>
+        <style>
+            .trix-button-group.trix-button-group--file-tools {
+                display:none;
+            }
+        </style>
     </head>
 
     <body>
