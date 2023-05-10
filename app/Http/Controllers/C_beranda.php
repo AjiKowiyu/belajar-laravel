@@ -18,6 +18,11 @@ class C_beranda extends Controller
 
     public function kabar_by_kategori($id_kategori, $nama_kategori)
     {
-        echo "id kategori = $id_kategori, nama kategori = $nama_kategori";
+        $kategori = Berita_kategori::all();
+        $berita = Berita::
+            where('status', 'Publish')
+            ->where('kategori_id', $id_kategori)
+            ->join('berita_kategori', 'berita.kategori_id', '=', 'berita_kategori.id')->get();
+        return view('kabar/kategori', compact('kategori','berita'));
     }
 }
