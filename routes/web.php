@@ -25,8 +25,10 @@ Route::get('/', [C_beranda::class, 'index'])->name('beranda');
 Route::get('/{id_kategori}/kabar-{nama_kategori}', [C_beranda::class, 'kabar_by_kategori'])
     ->where([
         'id_kategori'=>'[0-9]+',
-        'nama_kategori'=>'[a-z]+',
+        'nama_kategori'=>'^[a-z. -]+$',
     ])->name('kabar-kategori');
+
+Route::get('/kabar/{id_berita}/{judul_berita}', [C_beranda::class, 'kabar_berita'])->where('id_berita', '[0-9]+')->name('kabar-berita');
 
 Route::get('/about', function(){
     return view('test/halaman-about');

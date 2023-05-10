@@ -25,4 +25,21 @@ class C_beranda extends Controller
             ->join('berita_kategori', 'berita.kategori_id', '=', 'berita_kategori.id')->get();
         return view('kabar/kategori', compact('kategori','berita'));
     }
+
+
+
+    public function kabar_berita($id_berita, $judul_berita)
+    {
+        $berita = Berita::where('berita.id', $id_berita)
+            ->join('berita_kategori', 'berita.kategori_id', '=', 'berita_kategori.id')
+            ->first();
+        $berita_lain = Berita::
+            where('status', 'Publish')
+            ->where('berita.kategori_id', $berita->kategori_id)
+            ->where('berita.id', '!=', $berita->id)
+            ->join('berita_kategori', 'berita.kategori_id', '=', 'berita_kategori.id')
+            ->get();
+        return view('kabar/artikel', compact('berita', 'berita_lain'));
+
+    }
 }
