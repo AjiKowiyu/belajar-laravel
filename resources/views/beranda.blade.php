@@ -110,17 +110,18 @@
         <div class="row mb-2">
             @foreach ($berita as $b)
             <div class="col-md-6">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-300 position-relative">
-                    <div class="col-8 p-4">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow h-md-300 position-relative p-4">
+                    <div class="col-12">
                         <h3 class="mb-0">{{ $b->judul }}</h3>
+                    </div>
+                    <div class="col-8">
+                        <strong class="d-inline-block mb-2 text-primary">{{ $b->nama_kategori }}</strong>
                         <div class="mb-2 text-muted">{{ date('d F Y - H:i', strtotime($b->tanggal_create)) }}</div>
                         <p class="card-text mb-2">{{ strip_tags( (strlen($b->isi) > 70) ? substr($b->isi, 0, 70).'...' : $b->isi) }}</p>
                         <a href="#">Continue reading</a>
                     </div>
                     <div class="col-4">
-                        <img src="{{ ($b->foto != 'default-news.jpg') ? asset("storage/$b->foto") : asset("images/berita/$b->foto") }}" width="200" height="300" style="object-fit: cover;" alt="{{ $b->judul }}">
-                        {{-- <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> --}}
+                        <img src="{{ ($b->foto != 'default-news.jpg') ? asset("storage/$b->foto") : asset("images/berita/$b->foto") }}" width="170" height="150" style="object-fit: cover;" alt="{{ $b->judul }}">
                     </div>
                 </div>
             </div>

@@ -10,7 +10,8 @@ class C_beranda extends Controller
     public function index()
     {
         $kategori = Berita_kategori::all();
-        $berita = Berita::where('status', 'Publish')->get();
+        $berita = Berita::where('status', 'Publish')
+            ->join('berita_kategori', 'berita.kategori_id', '=', 'berita_kategori.id')->get();
         return view('beranda', compact('kategori','berita'));
     }
 
