@@ -72,20 +72,20 @@
         <header class="blog-header lh-1 py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
-                    <a class="link-secondary" href="#">Subscribe</a>
+                    <img src="{{ asset('images/dosencoding-bw.png') }}" alt="PT Kowiyu Kabar" class="w-25">
                 </div>
                 <div class="col-4 text-center">
-                    <a class="blog-header-logo text-dark" href="{{ route('beranda') }}">Kowiyu Kabar</a>
+                    <a class="blog-header-logo text-dark" href="{{ route('beranda') }}">kowiyu-kabar.com</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     @if (Route::has('login'))
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             @auth
-                                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Beranda</a>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
+                                <a href="{{ route('login') }}" class="btn btn-outline-primary">Masuk</a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 btn btn-outline-secondary">Register</a>
+                                    <a href="{{ route('register') }}" class="ml-4 btn btn-outline-secondary">Daftar</a>
                                 @endif
                             @endif
                         </div>
@@ -111,11 +111,33 @@
         @yield('konten')
     </main>
 
-    <footer class="blog-footer">
-        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-        <p>
-            <a href="#">Back to top</a>
-        </p>
+    <footer class="blog-footer my-5 pt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>PT Kowiyu Kabar</h3>
+                <img src="{{ asset('images/dosencoding-bw.png') }}" alt="PT Kowiyu Kabar" width="100">
+            </div>
+            <div class="col-md-6">
+                <h3>Tentang kowiyu-kabar.com</h3>
+                <p>
+                    kowiyu-kabar.com adalah sebuah situs web berita di Indonesia.
+                    kowiyu-kabar.com hanya mempunyai edisi daring dan menggantungkan pendapatan dari bidang iklan.
+                    Sejak tanggal 3 Agustus 2011, kowiyu-kabar.com menjadi bagian dari PT Kowiyu Kabar Cakrawala,
+                    salah satu anak perusahaan Kowiyu Group.
+                </p>
+                <p>
+                    <a href="#">Kembali ke atas</a>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h3>Kategori</h3>
+                @foreach ($kategori as $k)
+                    <a class="" href="{{ route('kabar-kategori', ['id_kategori'=>$k->id, 'nama_kategori'=>strtolower($k->nama_kategori)]) }}">
+                        {{ $k->nama_kategori }}
+                    </a><br>
+                @endforeach
+            </div>
+        </div>
     </footer>
 </body>
 </html>

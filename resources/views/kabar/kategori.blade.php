@@ -15,7 +15,7 @@
                 <strong class="d-inline-block mb-2 text-primary">{{ $b->nama_kategori }}</strong>
                 <div class="mb-2 text-muted">{{ date('d F Y - H:i', strtotime($b->tanggal_create)) }}</div>
                 <p class="card-text mb-2">{{ strip_tags( (strlen($b->isi) > 70) ? substr($b->isi, 0, 70).'...' : $b->isi) }}</p>
-                <a href="{{ route('kabar-berita', ['id_berita'=>$b->id_berita, 'judul_berita'=>$slug]) }}">Continue reading</a>
+                <a href="{{ route('kabar-berita', ['id_berita'=>$b->id_berita, 'judul_berita'=>$slug]) }}">Lanjutkan baca...</a>
             </div>
             <div class="col-4">
                 <img src="{{ ($b->foto != 'default-news.jpg') ? asset("storage/$b->foto") : asset("images/berita/$b->foto") }}" width="170" height="150" style="object-fit: cover;" alt="{{ $b->judul }}">
